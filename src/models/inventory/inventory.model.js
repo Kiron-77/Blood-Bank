@@ -18,33 +18,29 @@ const InventrySchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        enum: ['organization', 'doner', 'hospital', 'user', 'admin'],
-        default: "hospital"
+        enum: ['organization', 'doner', 'hospital', 'user', 'admin']
     },
     organization: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Types.ObjectId,
         ref: 'Organization',
         required: function () {
-            return this.role === "organization"
-        },
-        unique: true
+            return this.role === 'organization'
+        }
     },
     hospital: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Types.ObjectId,
         ref: 'Hospital',
         required: function () {
             return this.inventoryType === "in"
-        },
-        unique: true,
+        }
     },
    
     doner: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Types.ObjectId,
         ref: 'Doner',
         required: function () {
             return this.inventoryType === "out"
-        },
-        unique: true
+        }
     },
     createdBy: {
         type: mongoose.Types.ObjectId,

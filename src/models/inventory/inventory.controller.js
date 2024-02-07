@@ -15,16 +15,7 @@ class InventoryController {
             next(exception)
         }
     }
-    updateInventory = async(id,data) => {
-        try {
-            let status = await ProductModel.findByIdAndUpdate(id, {
-               $set:data
-            }) 
-            return status;
-        } catch (exception) {
-            throw exception
-        }
-    }
+  
     listAllInventory = async(req, res, next) => {
         try {
             const inventorylist = await inventorySvc.getByFilter(req.body.userId)
